@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+  background-color: #eaeaea;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+.material-icons.md-red { color: #e91d23; }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.addMoto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 5px 0px 5px black;
+  position: sticky;
+  top: 0;
+}
+
+.addMotoBtn {
+  height: 30px;
+  width: 125px;
+  border: none;
+  margin-bottom: 5px;
+  /* box-shadow: 2px 2px 2px 1px slategray; */
+  background-color: white;
+  color: #e91d23;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.addMotoBtn:hover {
+  border-bottom: 2px solid rgb(155, 9, 9);
+}
+
+.currentMoto {
+  margin-top: 15px;
+}
+
+.motorcycleCard {
+  border: 3px black solid;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  min-width: 400px;
+  max-width: 800px;
+  margin: 15px auto;
+}
+
+.motoDivider {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 15px;
+  
+}
+
+button {
+  cursor: pointer;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  margin: auto;
+  
+}
+
+.updateBtn, .removeBtn {
+  flex: 1;
+  height: 30px;
+  border: none;
+  margin-bottom: 5px;
+  background-color: white;
+  color: #e91d23;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.updateBtn:hover, .removeBtn:hover {
+  border-bottom: 2px solid rgb(155, 9, 9);
+}
+
+.updateBtn span, .removeBtn span {
+  position: relative;
+  transition: 0.5s;
+}
+
+.removeBtn span:after {
+  content: 'delete_outline';
+  position: absolute;
+  opacity: 0;
+  top: -19px;
+  right: -25px;
+  transition: 0.5s;
+}
+
+.updateBtn span:after {
+  content: 'upgrade';
+  position: absolute;
+  opacity: 0;
+  top: -19px;
+  right: -25px;
+  transition: 0.5s;
+}
+
+.removeBtn:hover span, .updateBtn:hover span {
+  padding-right: 30px;
+}
+
+.removeBtn:hover span:after, .updateBtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.input {
+  width: 250px;
+  background-color: #4e4848;
+  color: white;
+  font-weight: 700;
+}
+
+.input::placeholder {
+  color: rgb(207, 206, 206);
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.currentMoto {
+  text-align: center;
+}
+
+.currentMoto > button {
+ width: 100px;
+ margin-left: 15px;
+ height: 30px;
+  border: none;
+  margin-bottom: 5px;
+  background-color: white;
+  color: #e91d23;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.currentMoto > button:hover {
+  border-bottom: 2px solid rgb(155, 9, 9);
+}
+
+.motoCardTitle {
+  font-size: 35px;
+  letter-spacing: 2px;
+  text-align: center;
+}
