@@ -226,7 +226,7 @@ button {
 
 .searchForm {
   height: 30px;
-  width: 300px;
+  width: 350px;
   margin: auto;
   position: relative;
   margin-bottom: 35px;
@@ -238,7 +238,6 @@ button {
   background-color: white;
   border: none;
   border-bottom: rgb(155, 9, 9) 2px solid;
-  /* box-shadow: 1px 1px 4px #e91d23; */
   outline: none;
 border-radius: 0;
 color: black;
@@ -248,7 +247,7 @@ color: black;
   height: 30px;
   width: 34px;
   position: absolute;
-  right: 0;
+  right: 5px;
   top: 15px;
   border-radius: 0px 20px 20px 0px;
   background-color: white;
@@ -262,17 +261,53 @@ color: black;
 
 
 .searchForm:hover .searchBtn {
-  border-bottom: #4e4848 2px solid;
-  border-right: #4e4848 2px solid;
-  border-top: #4e4848 2px solid;
-  stroke-linecap: round;
+  border-bottom: #4e4848 1px solid;
+  border-right: #4e4848 1px solid;
+  border-top: #4e4848 1px solid;
 }
 
 .searchForm:hover  #search {
-  border-bottom: #4e4848 2px solid;
+  border-bottom: #4e4848 1px solid;
 }
 
 .searchBtn:hover {
   color: white;
   background-color: #4e4848;
+}
+
+#selectMotoCat {
+  height: 30px;
+  width: 75px;
+  position: absolute;
+  left: -35px;
+  top: 15px;
+  text-align: center;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  color: rgb(207, 206, 206);
+  border-bottom: rgb(155, 9, 9) 2px solid;
+  border-left: rgb(155, 9, 9) 2px solid;
+  border-top: rgb(155, 9, 9) 2px solid;
+  border-radius: 20px 0px 0px 20px
+}
+
+.searchForm:hover #selectMotoCat {
+  border-bottom: #4e4848 1px solid;
+  border-left: #4e4848 1px solid;
+  border-top: #4e4848 1px solid;
+}
+
+#selectMotoCat:hover {
+  background-color: #4e4848;
+  color: white;
+}
+
+#search:hover {
+  background-color: #4e4848;
+  color: white;
+}
+
+#search:hover::placeholder {
+  color:white;
 }
