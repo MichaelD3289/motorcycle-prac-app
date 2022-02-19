@@ -223,3 +223,56 @@ button {
   letter-spacing: 2px;
   text-align: center;
 }
+
+.searchForm {
+  height: 30px;
+  width: 300px;
+  margin: auto;
+  position: relative;
+  margin-bottom: 35px;
+  
+}
+
+#search {
+  width: 275px;
+  background-color: white;
+  border: none;
+  border-bottom: rgb(155, 9, 9) 2px solid;
+  /* box-shadow: 1px 1px 4px #e91d23; */
+  outline: none;
+border-radius: 0;
+color: black;
+}
+
+.searchBtn {
+  height: 30px;
+  width: 34px;
+  position: absolute;
+  right: 0;
+  top: 15px;
+  border-radius: 0px 20px 20px 0px;
+  background-color: white;
+  border: none;
+  border-bottom: rgb(155, 9, 9) 2px solid;
+  border-right: rgb(155, 9, 9) 2px solid;
+  border-top: rgb(155, 9, 9) 2px solid;
+
+}
+
+
+
+.searchForm:hover .searchBtn {
+  border-bottom: #4e4848 2px solid;
+  border-right: #4e4848 2px solid;
+  border-top: #4e4848 2px solid;
+  stroke-linecap: round;
+}
+
+.searchForm:hover  #search {
+  border-bottom: #4e4848 2px solid;
+}
+
+.searchBtn:hover {
+  color: white;
+  background-color: #4e4848;
+}

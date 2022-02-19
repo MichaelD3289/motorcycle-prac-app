@@ -66,18 +66,18 @@ function getMotorcycles() {
           <section class="motorcycleCardForm ${id}">
           <h1 class="motoCardTitle">Motorcycle</h1>
           <div class="motoDivider">
-          <h2 class="name" id="${name} class="">Name: ${name}</h2>
-          <input placeholder="Change Name" class="input name${id}"/>
+          <h2 class="name" id="${name}">Name: ${name}</h2>
+          <input placeholder="Change Name" class="input name ${id}"/>
           </div>
 
           <div class="motoDivider">
           <h2 class="year" id="${year}">Year: ${year}</h2>
-          <input placeholder="Change Year" class="input year${id}" maxlength="4"/>
+          <input placeholder="Change Year" class="input year ${id}" maxlength="4"/>
           </div>
 
           <div class="motoDivider">
           <h2 class="color" id="${color}">Color: ${color}</h2>
-          <input placeholder="Change Color" class="input color${id}"/>
+          <input placeholder="Change Color" class="input color ${id}"/>
           </div>         
           
           </section>
@@ -142,23 +142,24 @@ function updateMoto(e) {
   const currentYear = firstDivider.nextElementSibling.firstChild.nextElementSibling.id
   const currentColor = firstDivider.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.id
 
-  if(isNaN(yearInput.value) || yearInput.value.split('').length !== 4) {
+  if(isNaN(yearInput.value) || yearInput.value.split('').length !== 4 && yearInput.value.split('').length !== 0) {
     alert('Year must be a number and formatted XXXX. ex(2015)')
     yearInput.value = "";
     return
   }
 
  if(nameInput.value === "") {
-   nameInput = currentName;
- } else {
+   nameInput = currentName
+ }  else {
    nameInput = nameInput.value;
  }
+ 
 
- if(yearInput.value === "") {
-   yearInput = currentYear;
+ if (yearInput.value === "") {
+   yearInput = currentYear
  } else {
-  yearInput = yearInput.value;
-}
+   yearInput = yearInput.value
+ }
 
  if(colorInput.value === "") {
    colorInput = currentColor;

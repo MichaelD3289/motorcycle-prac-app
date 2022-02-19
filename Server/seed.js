@@ -23,9 +23,14 @@ module.exports = {
     );
 
     INSERT INTO motorcycles (motorcycle_name,motorcycle_year, motorcycle_color)
-    VALUES ('FZ 07', 2015, 'red'),
-    ('XSR 900', 2018, 'blue'),
-    ('Grom', 2020, 'red');
+    VALUES ('FZ 07', 2015, 'Red'),
+    ('XSR 900', 2018, 'Blue'),
+    ('Venom', 2021, 'Black'),
+    ('X22R', 2019, 'Silver'),
+    ('Samurai', 2012, 'Black'),
+    ('TBR7', 2016, 'Green'),
+    ('Falcon', 2017, 'Red/White'),
+    ('Grom', 2020, 'Yellow');
     `)
     .then(() => {
       console.log('DB seeded!')
