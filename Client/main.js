@@ -15,6 +15,12 @@ function addMotorcycle(event) {
     return
   }
 
+  if(isNaN(year.value) || year.value.split('').length !== 4) {
+    alert('Year must be a number and formatted XXXX. ex(2015)')
+    year.value = "";
+    return
+  }
+
   let body = {
     name: name.value,
     year: year.value,
@@ -23,51 +29,10 @@ function addMotorcycle(event) {
 
   axios
   .post(`${baseUrl}/motorcycle`, body)
-  .then(res => {
-    const {motorcycle_id: id, motorcycle_name: name, motorcycle_year: year, motorcycle_color: color} = res.data[0];
-
-    const motorcycleCard = document.createElement('div');
-       motorcycleCard.classList.add('motorcycleCard');
-          motorcycleCard.innerHTML = `
-          <section class="motorcycleCardForm">
-          <h1 class="motoCardTitle">Motorcycle</h1>
-          <div class="motoDivider">
-          <h2 class="name" id="${name}">Name: ${name}</h2>
-          <input placeholder="Change Name" class="input ${id}"/>
-          </div>
-
-          <div class="motoDivider">
-          <h2 class="year" id="${year}">Year: ${year}</h2>
-          <input placeholder="Change Year" class="input ${id}"/>
-          </div>
-
-          <div class="motoDivider">
-          <h2 class="color" id="${color}">Color: ${color}</h2>
-          <input placeholder="Change Color" class="input ${id}"/>
-          </div>         
-
-          
-          </section>
-          <div class="btnContainer">
-          <button class="updateBtn ${id}">Update<span class="material-icons md-red">
-          </span></button>
-          <button class="removeBtn" id="${id}">Remove<span class="material-icons md-red">
-          </span></button>
-          </div>
-          `
-         motorcycleContainer.appendChild(motorcycleCard);
-
-         const allRemoveBtns = document.querySelectorAll('.removeBtn')
-         for(let i = 0; i < allRemoveBtns.length; i++) {
-           allRemoveBtns[i].addEventListener('click', deleteMoto);
-         }
- 
-         const allUpdateBtns = document.querySelectorAll('.updateBtn')
-         for(let i = 0; i < allUpdateBtns.length; i++) {
-           allUpdateBtns[i].addEventListener('click', updateMoto);
-         }
+  .then(() => {
+    getMotorcycles();
   })
-  .catch(err => console.log(err))
+    .catch(err => console.log(err))
 
   name.value = "";
   year.value = "";
@@ -101,20 +66,19 @@ function getMotorcycles() {
           <section class="motorcycleCardForm ${id}">
           <h1 class="motoCardTitle">Motorcycle</h1>
           <div class="motoDivider">
-          <h2 class="name" id="${name}">Name: ${name}</h2>
-          <input placeholder="Change Name" class="input name ${id}"/>
+          <h2 class="name" id="${name} class="">Name: ${name}</h2>
+          <input placeholder="Change Name" class="input name${id}"/>
           </div>
 
           <div class="motoDivider">
           <h2 class="year" id="${year}">Year: ${year}</h2>
-          <input placeholder="Change Year" class="input year ${id}"/>
+          <input placeholder="Change Year" class="input year${id}" maxlength="4"/>
           </div>
 
           <div class="motoDivider">
           <h2 class="color" id="${color}">Color: ${color}</h2>
-          <input placeholder="Change Color" class="input color ${id}"/>
+          <input placeholder="Change Color" class="input color${id}"/>
           </div>         
-
           
           </section>
           <div class="btnContainer">
@@ -125,7 +89,6 @@ function getMotorcycles() {
           </div>
           `
          motorcycleContainer.appendChild(motorcycleCard);
-
         }
         
         const allRemoveBtns = document.querySelectorAll('.removeBtn')
@@ -136,6 +99,11 @@ function getMotorcycles() {
         const allUpdateBtns = document.querySelectorAll('.updateBtn')
         for(let i = 0; i < allUpdateBtns.length; i++) {
           allUpdateBtns[i].addEventListener('click', updateMoto);
+        }
+
+        const allNameInputs = document.querySelectorAll('.name')
+        for(let i = 0; i < allNameInputs.length; i++) {
+          
         }
 
       })
@@ -152,8 +120,8 @@ function deleteMoto (e) {
   
   axios
     .delete(`${baseUrl}/motorcycle/${id}`)
-      .then(res => {
-        container.remove();
+      .then(() => {
+        getMotorcycles();
       })
         .catch(err => console.log(err))
       
@@ -174,11 +142,11 @@ function updateMoto(e) {
   const currentYear = firstDivider.nextElementSibling.firstChild.nextElementSibling.id
   const currentColor = firstDivider.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.id
 
-if(isNaN(yearInput.value)) {
-  alert('Year must be a number. ex(2015)')
-  yearInput.value = "";
-  return
-}
+  if(isNaN(yearInput.value) || yearInput.value.split('').length !== 4) {
+    alert('Year must be a number and formatted XXXX. ex(2015)')
+    yearInput.value = "";
+    return
+  }
 
  if(nameInput.value === "") {
    nameInput = currentName;
@@ -207,61 +175,14 @@ if(isNaN(yearInput.value)) {
 
   axios
       .put(`${baseUrl}/motorcycle/${id}`, body)
-      .then(res => {
-        
-        while(motorcycleContainer.firstChild) {
-          motorcycleContainer.removeChild(motorcycleContainer.firstChild);
+      .then(() => {
+          getMotorcycles();
         }
-
-        for(let i = 0; i < res.data.length; i++) {
-          const {motorcycle_id: id, motorcycle_name: name, motorcycle_year: year, motorcycle_color: color} = res.data[i];
-
-          const motorcycleCard = document.createElement('div');
-          motorcycleCard.classList.add('motorcycleCard');
-          motorcycleCard.innerHTML = `
-          <section class="motorcycleCardForm ${id}">
-          <h1 class="motoCardTitle">Motorcycle</h1>
-          <div class="motoDivider">
-          <h2 class="name" id="${name}">Name: ${name}</h2>
-          <input placeholder="Change Name" class="input name ${id}"/>
-          </div>
-
-          <div class="motoDivider">
-          <h2 class="year" id="${year}">Year: ${year}</h2>
-          <input placeholder="Change Year" class="input year ${id}"/>
-          </div>
-
-          <div class="motoDivider">
-          <h2 class="color" id="${color}">Color: ${color}</h2>
-          <input placeholder="Change Color" class="input color ${id}"/>
-          </div>         
-
-          
-          </section>
-          <div class="btnContainer">
-          <button class="updateBtn ${id}">Update<span class="material-icons md-red">
-          </span></button>
-          <button class="removeBtn" id="${id}">Remove<span class="material-icons md-red">
-          </span></button>
-          </div>
-          `
-         motorcycleContainer.appendChild(motorcycleCard);
-
-        }
-        
-        const allRemoveBtns = document.querySelectorAll('.removeBtn')
-        for(let i = 0; i < allRemoveBtns.length; i++) {
-          allRemoveBtns[i].addEventListener('click', deleteMoto);
-        }
-
-        const allUpdateBtns = document.querySelectorAll('.updateBtn')
-        for(let i = 0; i < allUpdateBtns.length; i++) {
-          allUpdateBtns[i].addEventListener('click', updateMoto);
-        }
-      })
+  )
       .catch(err => console.log(err))
 
-      nameInput.value="";
-      yearInput.value="";
-      colorInput.value="";
+      nameInput.value= "";
+      yearInput.value= "";
+      colorInput.value= "";
 }
+
