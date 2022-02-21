@@ -315,3 +315,17 @@ color: black;
 select {
   cursor: pointer;
 }
+
+.noMatchParent {
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  margin: auto;
+}
+
+.noMatchText {
+ margin-top: 35px;
+ color: #4e4848;
+ letter-spacing: 2px;
+ word-spacing: 5px;
+}

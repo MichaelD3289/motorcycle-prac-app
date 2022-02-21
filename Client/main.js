@@ -49,13 +49,14 @@ const getAll = document.getElementById('getAll');
 
 
 function getMotorcycles() {
+  
   axios
       .get(`${baseUrl}/motorcycles`)
       .then(res => {
-
         while(motorcycleContainer.firstChild) {
           motorcycleContainer.removeChild(motorcycleContainer.firstChild);
         }
+       
 
         for(let i = 0; i < res.data.length; i++) {
           const {motorcycle_id: id, motorcycle_name: name, motorcycle_year: year, motorcycle_color: color} = res.data[i];
@@ -200,9 +201,21 @@ const searchValue = searchInput.value;
   axios
     .get(`${baseUrl}/motorcycle?${chosenCat}=${searchValue}`)
     .then(res => {
-
       while(motorcycleContainer.firstChild) {
         motorcycleContainer.removeChild(motorcycleContainer.firstChild);
+      }
+     
+      if(res.data.length === 0) {
+        const noMatchParent = document.createElement('dev');
+        const noMatchText = document.createElement('h3');
+        noMatchParent.classList.add('noMatchParent');
+        noMatchText.classList.add('noMatchText');
+
+        noMatchText.textContent = 'No matches found';
+
+        noMatchParent.appendChild(noMatchText);
+        motorcycleContainer.appendChild(noMatchParent);
+        return;
       }
 
       for(let i = 0; i < res.data.length; i++) {
@@ -256,6 +269,8 @@ const searchValue = searchInput.value;
 
     })
     .catch(err => console.log(err))
+
+    searchInput.value = "";
 }
 
 searchBtn.addEventListener('click', searchMoto);
