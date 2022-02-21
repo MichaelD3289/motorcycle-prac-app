@@ -187,3 +187,75 @@ function updateMoto(e) {
       colorInput.value= "";
 }
 
+// Searching Motorcycles ------------------------------------------------------------------------------------------------
+const dropDown = document.querySelector('#selectMotoCat');
+const searchInput = document.getElementById('search');
+const searchBtn = document.querySelector('.searchBtn');
+
+function searchMoto (e) {
+e.preventDefault();
+const chosenCat = dropDown.value;
+const searchValue = searchInput.value;
+
+  axios
+    .get(`${baseUrl}/motorcycle?${chosenCat}=${searchValue}`)
+    .then(res => {
+
+      while(motorcycleContainer.firstChild) {
+        motorcycleContainer.removeChild(motorcycleContainer.firstChild);
+      }
+
+      for(let i = 0; i < res.data.length; i++) {
+        const {motorcycle_id: id, motorcycle_name: name, motorcycle_year: year, motorcycle_color: color} = res.data[i];
+
+        const motorcycleCard = document.createElement('div');
+        motorcycleCard.classList.add('motorcycleCard');
+        motorcycleCard.innerHTML = `
+        <section class="motorcycleCardForm ${id}">
+        <h1 class="motoCardTitle">Motorcycle</h1>
+        <div class="motoDivider">
+        <h2 class="name" id="${name}">Name: ${name}</h2>
+        <input placeholder="Change Name" class="input name ${id}"/>
+        </div>
+
+        <div class="motoDivider">
+        <h2 class="year" id="${year}">Year: ${year}</h2>
+        <input placeholder="Change Year" class="input year ${id}" maxlength="4"/>
+        </div>
+
+        <div class="motoDivider">
+        <h2 class="color" id="${color}">Color: ${color}</h2>
+        <input placeholder="Change Color" class="input color ${id}"/>
+        </div>         
+        
+        </section>
+        <div class="btnContainer">
+        <button class="updateBtn ${id}">Update<span class="material-icons md-red">
+        </span></button>
+        <button class="removeBtn" id="${id}">Remove<span class="material-icons md-red">
+        </span></button>
+        </div>
+        `
+       motorcycleContainer.appendChild(motorcycleCard);
+      }
+      
+      const allRemoveBtns = document.querySelectorAll('.removeBtn')
+      for(let i = 0; i < allRemoveBtns.length; i++) {
+        allRemoveBtns[i].addEventListener('click', deleteMoto);
+      }
+
+      const allUpdateBtns = document.querySelectorAll('.updateBtn')
+      for(let i = 0; i < allUpdateBtns.length; i++) {
+        allUpdateBtns[i].addEventListener('click', updateMoto);
+      }
+
+      const allNameInputs = document.querySelectorAll('.name')
+      for(let i = 0; i < allNameInputs.length; i++) {
+        
+      }
+
+    })
+    .catch(err => console.log(err))
+}
+
+searchBtn.addEventListener('click', searchMoto);

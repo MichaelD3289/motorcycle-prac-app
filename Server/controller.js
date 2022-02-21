@@ -78,5 +78,21 @@ module.exports = {
     `)
     .then(dbRes => res.status(200).send(dbRes[0]))
     .catch(err => console.log(err))
-  }
+  },
+
+  searchMotos: (req, res) => {
+    const chosenCategory = Object.keys(req.query)[0];
+    let searchValue = req.query[chosenCategory];
+    
+    searchValue = String(searchValue)
+ 
+    sequelize
+      .query(`
+        SELECT * FROM motorcycles
+        WHERE UPPER(CAST(motorcycle_${chosenCategory} AS TEXT))
+        LIKE UPPER('%${searchValue}%');
+      `)
+      .then(dbRes => res.status(200).send(dbRes[0]))
+      .catch(err => console.log(err))
+   }
 }

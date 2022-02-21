@@ -12,12 +12,13 @@ const { seed } = require('./seed');
 app.post('/seed', seed);
 
 //server requests 
-const { addMotorcycle, getMotorcycles, updateMoto, deleteMoto } = require('./controller'); 
+const { addMotorcycle, getMotorcycles, updateMoto, deleteMoto, searchMotos } = require('./controller'); 
 
 app.post('/api/motorcycle', addMotorcycle);
 app.get('/api/motorcycles', getMotorcycles);
 app.put('/api/motorcycle/:id', updateMoto);
 app.delete('/api/motorcycle/:id', deleteMoto);
+app.get('/api/motorcycle', searchMotos);
 
 
 
